@@ -37,8 +37,9 @@ def show_all(*_) -> str:
     Returns:
         str: The string representation of all users in the address book.
     """
-
-    return '\n'.join([user for user in ab])
+    if ab:
+        return '\n'.join([user for user in ab])
+    return "The address book is empty"
 
 
 def load_users(path: str = USERS_FILE) -> AddressBook:
