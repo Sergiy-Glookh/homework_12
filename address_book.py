@@ -200,12 +200,16 @@ class AddressBook(UserDict):
         """
 
         found_users = AddressBook()
+        search_substr = search_substr.lower()
+        search_phone = ''.join(filter(str.isdigit, search_substr))
+
         for name, rec in self.data.items():
-            if search_substr in name:
+            if search_substr in name.lower():
                 found_users[name] = rec
                 continue
+
             for phone in rec.phones:
-                if search_substr in phone.value:
+                if search_phone in ''.join(filter(str.isdigit, phone.value)):
                     found_users[name] = rec
                     continue
         if found_users:
