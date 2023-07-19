@@ -17,6 +17,7 @@ It is a simple address book application that allows users to manage their contac
 - `show all`: Show all users in the address book.
 - `hello`: Display a welcome message.
 - `help`: Show the list of available commands.
+- `save csv`: Additionally save all contacts in csv format.
 - To exit the program, you can use one of the following commands: `exit`, `close`, `goodbye`, `quit`, or `q`.
 ### Note:
 - Parameters enclosed in `<angle brackets>` and `[square brackets]` are placeholders that should be replaced with the actual values.

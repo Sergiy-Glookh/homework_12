@@ -137,7 +137,7 @@ def add_new_user(args: list[str]) -> str:
             continue
 
         result = add_birthday([name, obj])
-        if result == f"{color(obj, 'c')} - Birthday added successfully.":
+        if result == f"{color(obj, 'c')} - Birthday added successfully.\n":
             report += result
             continue
 
@@ -488,6 +488,7 @@ The program uses a command-line interface for interaction.
 {color('show all', 'c')}: Show all users in the address book.
 {color('hello', 'c')}: Display a welcome message.
 {color('help', 'c')}: Show the list of available commands.
+{color('save csv', 'c')}: Additionally save all contacts in csv format.
 To exit the program, you can use one of the following commands: \
 {color('exit', 'c')}, {color('close', 'c')}, {color('goodbye', 'c')}, {color('quit', 'c')}, or {color('q', 'c')}.
 
