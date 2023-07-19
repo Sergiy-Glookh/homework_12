@@ -96,6 +96,8 @@ def input_error(funk):
             return "Please enter the name of an existing user"
         except UnboundLocalError:
             return "Please enter username and phone number"
+        except ValueError as err:
+            return err
         except AddingExistingUser as err:
             return err
         except AddingExistingPhone as err:

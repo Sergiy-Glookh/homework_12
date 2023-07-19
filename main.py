@@ -315,11 +315,13 @@ def add_birthday(args: list[str]) -> str:
 
     try:
         y, m, d = map(int, re.split(r'[.,-/_]', birthday[0]))
-        ab[name].birthday = Birthday(datetime(y, m, d))
-    except:
+    except ValueError:
         return f"{color(birthday[0], 'r')} - Birthday format is incorrect. The date should be in the format YYYY-MM-DD."
+    report = ab[name].add_birthday(Birthday(datetime(y, m, d)))
+    status = 'c' if report == "Birthday added successfully." else 'r'
 
-    return  f"{color(birthday[0], 'c')} - Birthday added successfully."
+
+    return  f"{color(birthday[0], status)} - {report}"
 
 
 @input_error
