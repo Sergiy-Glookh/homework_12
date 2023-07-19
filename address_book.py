@@ -1,6 +1,7 @@
 from collections import UserDict
 from datetime import datetime
 from exceptions import *
+import csv
 
 N = 10
 
@@ -186,6 +187,21 @@ class AddressBook(UserDict):
         """
 
         self.data[record.name.value] = record
+
+    def save(self, ful_path: str)  -> str:
+
+        with open(ful_path, 'w', newline='') as fh:
+            field_names = ['User', 'Phones', 'Birthday']
+            writer = csv.DictWriter(fh, fieldnames=field_names)
+            writer.writeheader()
+            for name in self.data:
+                phones = ' '.join(list(map(lambda x: x.value, self.data[name].phones))) if self.data[name].phones else ''
+                birthday = self.data[name].birthday.value.strftime("%d.%m.%Yp") if self.data[name].birthday else ''
+                writer.writerow({'User': name, 'Phones': phones, 'Birthday': birthday})
+
+            return 'The Address book was saved successfully.'
+
+
 
     def search(self, search_substr: str) -> str:  # AddressBook | str:
         """

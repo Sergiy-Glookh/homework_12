@@ -6,7 +6,9 @@ import re
 from exceptions import *
 
 
+
 USERS_FILE = 'users.bin'
+USERS_CSV_FILE = 'users.csv'
 ab = AddressBook()
 
 
@@ -67,6 +69,16 @@ def save_users(path: str = USERS_FILE) -> None:
 
     with open(path, 'wb') as file:
         pickle.dump(ab, file)
+
+
+def save_in_csv(*_) -> str:
+    if not ab:
+        return "Address book is empty"
+
+    file_name = USERS_CSV_FILE
+    ful_path =  os.path.join(os.getcwd(), file_name)
+    report = ab.save(ful_path)
+    return report[:-1] +  f" to the file {file_name}."
 
 
 def separates_name(args: list[str]) -> tuple[str, list[str]]:
@@ -279,7 +291,7 @@ def remove_phone(args: list[str]) -> str:
     return report
 
 
-
+@input_error
 def add_birthday(args: list[str]) -> str:
     """Adds a birthday to an existing user.
 
@@ -310,6 +322,7 @@ def add_birthday(args: list[str]) -> str:
     return  f"{color(birthday[0], 'c')} - Birthday added successfully."
 
 
+@input_error
 def show_birthday(args: list[str]) -> str:
     """Displays the birthday of a user.
 
@@ -334,6 +347,7 @@ def show_birthday(args: list[str]) -> str:
     return ab[name].birthday.value.strftime("%d.%m.%Yp")
 
 
+@input_error
 def birthday_countdown(args: list[str]) -> str:
     """Displays the number of days until the next birthday of a user.
 
@@ -527,7 +541,8 @@ handlers = {'add user': add_new_user,
             'find': find,
             'show all': show_all,
             'hello': hello,
-            'help': manual
+            'help': manual,
+            'save csv': save_in_csv
             }
 
 
